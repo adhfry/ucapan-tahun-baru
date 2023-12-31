@@ -3,15 +3,15 @@
 /**
  * launch carousel
  */
-function launchCarousel(){
-    $('#quote-carousel').carousel({
-        pause: true,
-        interval: 4000,
-    });
+function launchCarousel() {
+  $("#quote-carousel").carousel({
+    pause: true,
+    interval: 4000,
+  });
 }
 
 $(document).ready(function () {
-    launchCarousel();
+  launchCarousel();
 });
 
 /**
@@ -19,7 +19,7 @@ $(document).ready(function () {
  *
  * @type {string}
  */
-const baseUrl = 'https://github.com/';
+const baseUrl = "https://instagram.com/";
 
 /**
  * Get last year
@@ -33,7 +33,7 @@ let gasyYear = new Date().getFullYear();
  *
  * @type {number}
  */
-document.querySelector('#year').innerText = gasyYear;
+document.querySelector("#year").innerText = gasyYear;
 document.title += ` | ${gasyYear}`;
 
 /**
@@ -44,7 +44,9 @@ document.title += ` | ${gasyYear}`;
  * @returns {string}
  */
 function formatMessage(message) {
-    return message ? message.replace('{{YEAR}}', gasyYear) : `Bonne année ${gasyYear} !`;
+  return message
+    ? message.replace("{{YEAR}}", gasyYear)
+    : `Selamat Tahun Baru ${gasyYear} !`;
 }
 
 /**
@@ -55,7 +57,7 @@ function formatMessage(message) {
  * @returns {string}
  */
 function isActive(i) {
-    return i === 0 ? 'active' : ''
+  return i === 0 ? "active" : "";
 }
 
 /**
@@ -66,7 +68,10 @@ function isActive(i) {
  * @returns {string}
  */
 function checkImage(image) {
-    return image ?? 'https://i.pinimg.com/originals/93/d3/e3/93d3e31639a4d07613de9dccdc8bd5e8.png';
+  return (
+    image ??
+    "https://i.pinimg.com/originals/93/d3/e3/93d3e31639a4d07613de9dccdc8bd5e8.png"
+  );
 }
 
 /**
@@ -77,7 +82,7 @@ function checkImage(image) {
  * @returns {string}
  */
 function checkName(name) {
-    return name ?? 'From Madagascar';
+  return name ?? "From Madagascar";
 }
 
 /**
@@ -88,7 +93,7 @@ function checkName(name) {
  * @returns {string}
  */
 function checkGithub(link) {
-    return link ? (baseUrl + link) : 'https://github.com/';
+  return link ? baseUrl + link : "https://instagram.com/";
 }
 
 /**
@@ -98,39 +103,47 @@ function checkGithub(link) {
  * @returns {string}
  */
 function getFlag(nous) {
-    return nous.flag ?? 'mg';
+  return nous.flag ?? "mg";
 }
 
 // Fetch json file
-$.getJSON('USER.json', function (elements) {
-    elements.forEach(function (nous, i) {
-        document.getElementById('carousel-indicators').innerHTML += `
-              <li data-target="#quote-carousel" data-slide-to="${i}" class="${isActive(i)}" title="${checkName(nous.name)}">
+$.getJSON("USER.json", function (elements) {
+  elements.forEach(function (nous, i) {
+    document.getElementById("carousel-indicators").innerHTML += `
+              <li data-target="#quote-carousel" data-slide-to="${i}" class="${isActive(
+      i
+    )}" title="${checkName(nous.name)}">
                 <img src="${checkImage(nous.image)}" alt="">
-              </li>`
+              </li>`;
 
-        document.getElementById('name').innerHTML += `
+    document.getElementById("name").innerHTML += `
             <div class="item ${isActive(i)}">
                <blockquote>
                   <div class="row">
                        <div class="col-sm-3 text-center">
-                           <img class="img-circle" src="${checkImage(nous.image)}" style="width: 100px;height:100px;">
+                           <img class="img-circle" src="${checkImage(
+                             nous.image
+                           )}" style="width: 100px;height:100px;">
                        </div>
                         <div class="col-sm-9">
                             <p>${formatMessage(nous.message)}</p>
                             <div class="row">
                                 <small>
                                     ${checkName(nous.name)}
-                                    <a href="${checkGithub(nous.username)}" target="_blank" 
+                                    <a href="${checkGithub(
+                                      nous.username
+                                    )}" target="_blank" 
                                     style="color: #f9f9f9;margin: 5px">
-                                    <i class="fa fa-github"></i>
-                                    <i class="flag-icon flag-icon-${getFlag(nous)}"></i>
+                                    <i class="fa fa-instagram"></i>
+                                    <i class="flag-icon flag-icon-${getFlag(
+                                      nous
+                                    )}"></i>
                                     </a>
                                 </small>
                             </div>
                         </div>
                     </div>
                </blockquote>
-            </div>`
-    })
-})
+            </div>`;
+  });
+});
