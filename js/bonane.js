@@ -82,7 +82,7 @@ function checkImage(image) {
  * @returns {string}
  */
 function checkName(name) {
-  return name ?? "From Madagascar";
+  return name ?? "From Indonesia";
 }
 
 /**
@@ -103,7 +103,7 @@ function checkGithub(link) {
  * @returns {string}
  */
 function getFlag(nous) {
-  return nous.flag ?? "mg";
+  return nous.flag ?? "id";
 }
 
 // Fetch json file
